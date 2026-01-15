@@ -5,8 +5,8 @@ import tokens
 from datetime import datetime
 
 """
-This script corrects a slight problem that appears with ODK mortality survey entries,
-modified through ODK web. Format of several fields was altered when field is saved 
+This script corrects a slight problem that appears with ODK WHO-verbal autopsies survey 
+entries, modified through ODK web. Format of several fields was altered when field is saved 
 again (even without any changes) once data is already retrieved. It gets wrong format 
 for some specific fields. This script corrects these errors, changing the format 
 some fields (Id100023 deceased date variable,autocaclucated field ageInDays or field
