@@ -4,18 +4,15 @@ from pyodk.client import Client
 
 def csv_cleaning(file_path, final_path):
     """
-    It cleans the problem created when editing ODK entries dates. It changes
-    the format of Id100023 deceased date and the autocaclucated field ageInDays.
+    We detected a problem when editing ODK entries dates, that gets wrong format
+    for those edited ODK entries. This script corrects these rerors, changing the
+    format of Id100023 deceased date variable and the autocaclucated field ageInDays.
     The field ageInDays2 is set as empty too.
 
     :return: csv file with the corrected format
     """
 
-#   print("Extracting csv file form server .")
-#    with Client() as client:
-#        submissions = client.submissions.get_table(project_id='3', form_id='')
-
-    print(str(datetime.now())+"ODK csv cleaning . . .")
+    print(str(datetime.now())+"CLEANING FORMAT FOR THOSE EDITED ODK ENTRIES")
     df = pd.read_csv(file_path)
     affected_df,norm = [],[]
     for k, el in df.T.items():
@@ -29,7 +26,6 @@ def csv_cleaning(file_path, final_path):
         except:
             affected_df.append(False)
             norm.append(True)
-
     new_df = pd.DataFrame(columns=df.columns)
     for k, el in df[affected_df].T.items():
         born_date = datetime.strptime(el['consented-deceased_CRVS-info_on_deceased-Id10021'], '%Y-%m-%d')
@@ -51,6 +47,5 @@ def csv_cleaning(file_path, final_path):
         new_df.loc[len(new_df)] = list_affected
 
     final_df = pd.concat([df[norm],new_df])
-    print(final_df)
     final_df.to_csv(final_path,index=False)
     print(str(datetime.now())+" FINISHED .")
