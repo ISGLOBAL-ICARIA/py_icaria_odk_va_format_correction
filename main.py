@@ -5,10 +5,12 @@ import tokens
 from datetime import datetime
 
 """
-We detected a problem when editing ODK entries dates, that gets wrong format 
-for those edited ODK entries. This script corrects these rerors, changing the
-format of Id100023 deceased date variable and the autocaclucated field ageInDays.
-The field ageInDays2 is set as empty too.
+This script corrects a slight problem that appears with ODK mortality survey entries,
+modified through ODK web. Format of several fields was altered when field is saved 
+again (even without any changes) once data is already retrieved. It gets wrong format 
+for some specific fields. This script corrects these errors, changing the format 
+some fields (Id100023 deceased date variable,autocaclucated field ageInDays or field
+ageInDays2).
 """
 
 __author__ = "Andreu Bofill"
